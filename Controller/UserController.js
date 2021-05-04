@@ -53,12 +53,16 @@ const RegisterForm = async(req, res)=>{
 	try{
 		const {username, email, password, confPass} = req.body;
 
+		// checking is that email is already exist in Db
 		preUser = await User.findOne({email});
 		if (preUser){
 			res.status(401).json({success:false, message:'Email already exists'});
 			return
 		}
-
+		/* if email is not exist then storing to mongo
+		   and hashing password using the bcrypt js is done in the 
+		   /Models/UserModel.js page, by using the Mongo presave method
+		*/
 		const newUser = await User.create({username, email, password})
 
 		sendToken(newUser, 200, res);
@@ -73,8 +77,11 @@ const ProfileView = async(req, res) =>{
 	res.render('Profile.ejs');
 }
 
-
+// common function for all sending token in response
 const sendToken = (user, status, res) =>{
+	/* getting the token by assigning to the Current logged in user id
+		user.getSignedToken written in Models/UserModel.js page	
+	*/
 	const token = user.getSignedToken();
 	const sendRes = {
 		_id: user._id,

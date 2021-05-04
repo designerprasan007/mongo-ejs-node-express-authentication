@@ -3,12 +3,22 @@ dotenv.config({path: "./config.env"})
 
 const express = require('express');
 const cors = require('cors');
+// helmet used to hide the code from hacker
 const helmet = require('helmet');
+
+/* morgan is popular package which gives the track of 
+   all files rendered at client side with there status code and error
+*/
 const morgan = require('morgan');
+
+/* path and http are core packages of Node  no need of npm install for this*/
 const http = require('http');
 const path = require('path');
 
+// getting Mongo connection from Database/
 const database = require('./Database/database');
+
+// routes passed that express can listen and give response
 const userRouter = require('./Routes/UserRoutes'); 
 
 
