@@ -17,7 +17,7 @@ const SocketUsers = (io) =>{
 	  // on page exit or refresh disconnecting the User and removing him from global array 
 	   socket.on('disconnect', () => {
 	   	// socket is global prop that comes when the users get joined 
-     	const index = Users.findIndex((user) =>  user.id === socket.ids);
+     	const index = Users.findIndex((user) =>  user.id === socket.id);
 	    if(index !== -1){
 	    	// removing the current user from array
 	        Users.splice(index, 1)[0];
