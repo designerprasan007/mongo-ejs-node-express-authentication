@@ -1,6 +1,13 @@
+
 const User = require('../Models/UsersModel');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
+
+/* res.render is sent with 2 props 1. authpage and 2. profilepage
+  this props are gone used in footer.ejs to identify the current page
+  and add the script according that	
+*/ 
 
 const LoginView = async(req, res) =>{
 	try{
