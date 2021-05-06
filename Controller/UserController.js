@@ -75,8 +75,17 @@ const RegisterForm = async(req, res)=>{
 	}
 }
 
+// initially rendering the Profile page
+const verifiedProfile =(req, res) =>{
+	res.render('Profile.ejs')
+}
+
+/* verifying token of profile page, if success sending him response, 
+   verification process done at /Middleware/Privete.js 
+*/
 const ProfileView = async(req, res) =>{
-	res.render('Profile.ejs');
+	const user = req.user;
+	sendToken(user, 200, res);
 }
 
 // common function for all sending token in response
@@ -93,4 +102,4 @@ const sendToken = (user, status, res) =>{
 	res.status(status).json({success:true, user:sendRes, token: token});
 }
 
-module.exports = {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView};
+module.exports = {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile};

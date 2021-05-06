@@ -1,10 +1,13 @@
 // this Js page is linked to Register.ejs and LoginView.ejs page, 
 $(document).ready(function(){
 	// get the userdata from localstorage
-	var storageVal = JSON.parse(localStorage.getItem('Userinfo'));
-	if(storageVal){
+	let Userinfo = localStorage.getItem('Userinfo');
+
+	const checkToken = Userinfo.includes('"token":"'); 
+	if(checkToken){
 		window.location.href = 'http://localhost:5000/auth/users/profile'
 	}
+
 
 	// loging form submit ajax function and validation
 	$('#loginSubmit').on('click', function(e){
