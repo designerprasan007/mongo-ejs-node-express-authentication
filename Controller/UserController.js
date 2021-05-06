@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const LoginView = async(req, res) =>{
 	try{
-		res.render('LoginView.ejs',{Emailerror:'', PassError:''});
+		res.render('LoginView.ejs');
 	}
 	catch(error){
 		console.log(error)
