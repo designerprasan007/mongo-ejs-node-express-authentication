@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Profile</title>
-	<link rel="stylesheet" type="text/css" href="/css/Style.css">
-</head>
-<body>
+<%- include('header'); -%>
+
 	<div class="authLoader"></div>
-	<div class="mainContent">
-		<h1>hi <span id="Username"></span> Welcome, </h1>
-		<h1>Your email is <span id="userEmail"></span></h1>
-		<button class="btn btn-sm btn-primary" id="LogoutUser">Logout</button>
+	<div class="mainContent container-fluid">
+		<div class="row">
+			<div class="col-md-2 col-sm-3 text-center">
+				<ul class="list-group" id="UsersList"></ul>
+			</div>
+			<div class="col-md-10 col-sm-9">
+				<h1>hi <span id="Username"></span> Welcome, </h1>
+				<h1>Your email is <span id="userEmail"></span></h1>
+				<button class="btn btn-sm btn-primary" id="LogoutUser">Logout</button>
+			</div>
+		</div>
 	</div>
-
-<!-- Jquery CDN -->
-<script src="/js/jquery-cdn.js"></script>
-<!-- Js for handleing login -->
-<script src="/js/Profile.js"></script>
-
-</body>
-</html>
+<%- include('footer'); -%>

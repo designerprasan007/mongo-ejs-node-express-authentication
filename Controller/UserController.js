@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const LoginView = async(req, res) =>{
 	try{
-		res.render('LoginView.ejs');
+		res.render('LoginView.ejs', {authpage:'authpage', profilePage:''});
 	}
 	catch(error){
 		console.log(error)
@@ -43,7 +43,7 @@ const LoginForm = async(req, res) =>{
 
 const RegisterView = async(req, res)=>{
 	try{
-		res.render('Register.ejs');
+		res.render('Register.ejs', {authpage:'authpage', profilePage:''});
 	}catch(err){
 		console.log(err);
 		res.status(500).json({success:false, message:err});
@@ -77,7 +77,7 @@ const RegisterForm = async(req, res)=>{
 
 // initially rendering the Profile page
 const verifiedProfile =(req, res) =>{
-	res.render('Profile.ejs')
+	res.render('Profile.ejs', {profilePage:'profilePage', authpage:''})
 }
 
 /* verifying token of profile page, if success sending him response, 

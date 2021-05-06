@@ -1,0 +1,16 @@
+
+<!-- Jquery CDN -->
+<script src="/js/jquery-cdn.js"></script>
+<!-- Js for handleing login -->
+<!-- checking the current page (sent from the Controller/UserController) -->
+<% if(authpage) { %>
+<script src="/js/Authantication.js"></script>
+<% }  %>
+<!-- checking the current page (sent from the Controller/UserController) -->
+<% if(profilePage) { %>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/Profile.js"></script>
+<% }  %>
+
+</body>
+</html>

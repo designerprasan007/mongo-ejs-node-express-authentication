@@ -26,12 +26,11 @@ const database = require('./Database/database');
 // routes passed that express can listen and give response
 const userRouter = require('./Routes/UserRoutes'); 
 
+const SocketUsers = require('./Utils/SocketUsers');
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,6 +56,15 @@ app.use('/auth/users', userRouter);
 
 // creating HTTP server to serve
 const server = http.createServer(app);
+
+const { Server } = require("socket.io");
+
+const io = new Server(server);
+
+
+// socket function called from Utils/socketuser.js 
+SocketUsers(io);
+
 
 // starting up the server
 server.listen(PORT, () =>{
