@@ -3,15 +3,17 @@ $(document).ready(function(){
 	// get the userdata from localstorage
 	let Userinfo = localStorage.getItem('Userinfo');
 
-	const checkToken = Userinfo.includes('"token":"'); 
-	if(checkToken){
-		window.location.href = 'http://localhost:5000/auth/users/profile'
+	if(Userinfo){
+		const checkToken = Userinfo.includes('"token":"'); 
+		if(checkToken){
+			window.location.href = 'http://localhost:5000/auth/users/profile'
+		}
 	}
-
 
 	// loging form submit ajax function and validation
 	$('#loginSubmit').on('click', function(e){
 		e.preventDefault();
+		$('#loginSubmit').attr("disabled", true);	
 		const email = $('#UserEmail').val();
 		const password = $('#UserPass').val();
 		if(!email || !password) {
@@ -32,10 +34,12 @@ $(document).ready(function(){
 			error: function(err){
 				if(err.responseJSON.message.startsWith('Email')){
 					$('.emailErr').text('Email Not found');
+					$('#loginSubmit').attr("disabled", false);	
 					return
 				}
 				else{
 					$('.passErr').text('Password not Match');
+					$('#loginSubmit').attr("disabled", false);	
 					return
 				}
 			}
@@ -45,6 +49,7 @@ $(document).ready(function(){
 	// register form function and validation
 	$('#registerSubmit').on('click', function(e){
 		e.preventDefault();
+		$('#registerSubmit').attr("disabled", true);	
 		const username = $('#Username').val();
 		const email = $('#UserEmail').val();
 		const password = $('#UserPass').val();
@@ -53,11 +58,13 @@ $(document).ready(function(){
 		// checking for empty fields
 		if(!username || !email || !password || !confPass){
 			$('.emptyErr').text('All Fields Required');
+			$('#registerSubmit').attr("disabled", false);	
 			return
 		}
 		// checking for password and conf password match
 		if(password !== confPass){
 			$('.passErr').text('Password not Match');
+			$('#registerSubmit').attr("disabled", false);	
 			return
 		}
 		// ajax call to server
@@ -78,6 +85,7 @@ $(document).ready(function(){
 			error: function(err){
 				if(err.responseJSON.message.startsWith('Email')){
 					$('.emailErr').text('Email Already Taken');
+					$('#registerSubmit').attr("disabled", false);	
 					return
 				}
 			}
