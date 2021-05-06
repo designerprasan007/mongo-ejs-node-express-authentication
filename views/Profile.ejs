@@ -1,6 +1,10 @@
 <%- include('header'); -%>
 
 	<div class="authLoader"></div>
+	<section class="unAuthBtn">
+		<p>403! Your not authorized person to view this please Login</p>
+		<button class="btn btn-primary  LogoutUser">Login</button>
+	</section>
 	<div class="mainContent container-fluid">
 		<div class="row">
 			<div class="col-md-2 col-sm-3 text-center">
@@ -9,7 +13,7 @@
 			<div class="col-md-10 col-sm-9">
 				<h1>hi <span id="Username"></span> Welcome, </h1>
 				<h1>Your email is <span id="userEmail"></span></h1>
-				<button class="btn btn-sm btn-primary" id="LogoutUser">Logout</button>
+				<button class="btn btn-sm btn-primary LogoutUser">Logout</button>
 			</div>
 		</div>
 	</div>

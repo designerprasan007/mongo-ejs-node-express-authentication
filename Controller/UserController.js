@@ -21,6 +21,8 @@ const LoginView = async(req, res) =>{
 const LoginForm = async(req, res) =>{
 	try{
 		const {email, password} = req.body;
+		if(!email || !password) return res.status(400).json({success:false, message:'All fields required'})
+
 		// check User Email first
 		const availUser = await User.findOne({email});
 		// if email not found sending response back to ajax API
@@ -62,6 +64,10 @@ const RegisterForm = async(req, res)=>{
 	try{
 		const {username, email, password, confPass} = req.body;
 
+		if(!username || !email || !password || !confPass) return res.status(400).json({success:false, message:'All fields required'})
+
+		if(password !== confPass) return res.status(400).json({success:false, message:'Password not match'})
+
 		// checking is that email is already exist in Db
 		preUser = await User.findOne({email});
 		if (preUser){
@@ -95,6 +101,11 @@ const ProfileView = async(req, res) =>{
 	sendToken(user, 200, res);
 }
 
+
+const pageNotFound = async(req,res ) =>{
+	res.render('404page.ejs', {profilePage:'profilePage', authpage:''});
+}
+
 // common function for all sending token in response
 const sendToken = (user, status, res) =>{
 	/* getting the token by assigning to the Current logged in user id
@@ -109,4 +120,4 @@ const sendToken = (user, status, res) =>{
 	res.status(status).json({success:true, user:sendRes, token: token});
 }
 
-module.exports = {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile};
+module.exports = {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile, pageNotFound};
