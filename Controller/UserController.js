@@ -16,14 +16,15 @@ const LoginForm = async(req, res) =>{
 		const {email, password} = req.body;
 		// check User Email first
 		const availUser = await User.findOne({email});
-		// if email not available redirect back to login view with error
+		// if email not found sending response back to ajax API
 		if(!availUser) {
 			res.status(401).json({success:false, message:'Email Not found'});
 			return
 		} 
-		// match password written in user modal
+		// match password written in user modal /Models/UserModel.js
 		const PassMatch = await availUser.Matchpass(password);
 
+		//  if password not match sending response back to ajax API
 		if(!PassMatch){
 			res.status(401).json({success:false, message:'Password not Match'});
 			return
@@ -32,6 +33,7 @@ const LoginForm = async(req, res) =>{
 		sendToken(availUser, 200, res)
 	}	
 	catch(err){
+		// catching the internal errors to stop the breaking of code
 		console.log(err);
 		res.status(500).json({success:false, message:err});
 	}
@@ -59,8 +61,8 @@ const RegisterForm = async(req, res)=>{
 			res.status(401).json({success:false, message:'Email already exists'});
 			return
 		}
-		/* if email is not exist then storing to mongo
-		   and hashing password using the bcrypt js is done in the 
+		/* if email is not exist then storing to DB,
+		   hashing password by using the bcrypt npm package, this process is done in the 
 		   /Models/UserModel.js page, by using the Mongo presave method
 		*/
 		const newUser = await User.create({username, email, password})

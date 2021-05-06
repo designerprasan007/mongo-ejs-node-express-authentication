@@ -2,9 +2,6 @@ const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const mongoose = require('mongoose');
 
-// getting the Object id of all Users
-const {ObjectId} = mongoose.Schema.Types
-
 
 // used to store the data in DB by respected Key name
 const UserSchema = new mongoose.Schema({

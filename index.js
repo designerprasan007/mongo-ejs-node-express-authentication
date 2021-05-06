@@ -1,13 +1,18 @@
+// dotenv is package use to collect data from env files
 const dotenv = require('dotenv');
+// setting env file to project
 dotenv.config({path: "./config.env"})
 
 const express = require('express');
+
+// cors used to handle cross origin resource sharing
 const cors = require('cors');
-// helmet used to hide the code from hacker
+
+// Helmet helps you secure your Express apps by setting various HTTP headers
 const helmet = require('helmet');
 
 /* morgan is popular package which gives the track of 
-   all files rendered at client side with there status code and error
+   all files rendered at client side with there status code and error or success
 */
 const morgan = require('morgan');
 
@@ -36,19 +41,26 @@ app.set('view engine', 'ejs');
 // static folder (css, js, images);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// using all packages with express to enable them
+
+// accepting and sending back the json response from form field
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(helmet());
 
-
+// setting default route after the port number
 app.use('/auth/users', userRouter);
 
-
+// creating HTTP server to serve
 const server = http.createServer(app);
 
+// starting up the server
 server.listen(PORT, () =>{
+	// calling database function when server up
 	database();
 	console.log(`serving on ${PORT}`);
 })
