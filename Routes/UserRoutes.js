@@ -2,7 +2,7 @@ const express = require('express');
 
 const user = express.Router();
 
-const {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile, pageNotFound} = require('../Controller/UserController');
+const {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile, pageNotFound, LandingPage} = require('../Controller/UserController');
 
 const {getPrivateData} = require('../Middleware/Private');
 // Login User form and view
@@ -19,6 +19,8 @@ user.get('/mainProfile', getPrivateData, ProfileView)
 // rendering the profile.ejs page if user has proper token
 user.get('/profile', verifiedProfile)
 
+// landing page
+user.get('/landingpage', LandingPage)
 
 // 404 page resposne
 user.get('*', pageNotFound);

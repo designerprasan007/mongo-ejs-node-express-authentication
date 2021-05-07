@@ -106,6 +106,10 @@ const pageNotFound = async(req,res ) =>{
 	res.render('404page.ejs', {profilePage:'profilePage', authpage:''});
 }
 
+const LandingPage = (req, res) =>{
+	res.render('landingpage.ejs', {profilePage:'profilePage', authpage:''});
+}
+
 // common function for all sending token in response
 const sendToken = (user, status, res) =>{
 	/* getting the token by assigning to the Current logged in user id
@@ -120,4 +124,4 @@ const sendToken = (user, status, res) =>{
 	res.status(status).json({success:true, user:sendRes, token: token});
 }
 
-module.exports = {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile, pageNotFound};
+module.exports = {LoginView, LoginForm, RegisterView, RegisterForm, ProfileView, verifiedProfile, pageNotFound, LandingPage};
