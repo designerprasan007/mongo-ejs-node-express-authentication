@@ -63,6 +63,7 @@
 
 .list-group-item {
   border: none !important;
+  border-bottom: 1px solid black !important;
 }
 
 

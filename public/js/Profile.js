@@ -61,7 +61,6 @@ $(document).ready(function(){
 					$('#userEmail').text(email);
 	  		    },
 	  		    error: function(err){
-	  		    	console.log('403')
 	  		    	$('.unAuthBtn').show()
 	  		    }
 			})
