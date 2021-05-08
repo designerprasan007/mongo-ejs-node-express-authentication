@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 
 const LoginView = async(req, res) =>{
 	try{
-		res.render('LoginView.ejs', {authpage:'authpage', profilePage:''});
+		res.render('LoginView.ejs', {CurrentPage:'authpage'});
 	}
 	catch(error){
 		console.log(error)
@@ -52,7 +52,7 @@ const LoginForm = async(req, res) =>{
 
 const RegisterView = async(req, res)=>{
 	try{
-		res.render('Register.ejs', {authpage:'authpage', profilePage:''});
+		res.render('Register.ejs', {CurrentPage:'authpage'});
 	}catch(err){
 		console.log(err);
 		res.status(500).json({success:false, message:err});
@@ -90,7 +90,7 @@ const RegisterForm = async(req, res)=>{
 
 // initially rendering the Profile page
 const verifiedProfile =(req, res) =>{
-	res.render('Profile.ejs', {profilePage:'profilePage', authpage:''})
+	res.render('Profile.ejs', {CurrentPage:'ProfilePage'})
 }
 
 /* verifying token of profile page, if success sending him response, 
@@ -103,11 +103,11 @@ const ProfileView = async(req, res) =>{
 
 
 const pageNotFound = async(req,res ) =>{
-	res.render('404page.ejs', {profilePage:'profilePage', authpage:''});
+	res.render('404page.ejs', {CurrentPage:'ProfilePage'});
 }
 
 const LandingPage = (req, res) =>{
-	res.render('landingpage.ejs', {profilePage:'profilePage', authpage:''});
+	res.render('landingpage.ejs', {CurrentPage:'ProfilePage'});
 }
 
 // common function for all sending token in response
