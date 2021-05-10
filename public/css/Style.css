@@ -141,7 +141,7 @@ img{
 }
 
 .secondContentBtns{
-  height: 200px;
+  height: 223px;
 }
 
 .col-md-3 > h3 p{
@@ -150,7 +150,7 @@ img{
 .timerSection{
   font-weight: bolder;
   position: absolute;
-  width: 100%;
+  width: 95%;
   margin-top: -16px;
 }
 
